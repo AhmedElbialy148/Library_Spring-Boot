@@ -38,6 +38,10 @@ public class Patron implements UserDetails {
         this.password = password;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

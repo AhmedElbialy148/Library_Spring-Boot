@@ -55,8 +55,10 @@ public class AuthenticationService {
 
 //           Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userData.username(), userData.password()));
 //            SecurityContextHolder.getContext().setAuthentication(authentication);
-
+            // Check if patron exists
             Patron user = patronRepo.findByUsername(userData.username()).orElseThrow(() -> new BadRequestException("User not found"));
+
+            // Check if password is correct
             if(!passwordEncoder.matches(userData.password(), user.getPassword())) {
                 throw new BadRequestException("Invalid username or password");
             }
